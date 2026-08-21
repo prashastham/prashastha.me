@@ -16,6 +16,14 @@ export default function Footer() {
           </a>
           <a
             className="text-secondary hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4"
+            href="https://www.linkedin.com/in/prashastha-mudannayake/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            LinkedIn
+          </a>
+          <a
+            className="text-secondary hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4"
             href="mailto:prashasthamudannayake98@gmail.com"
           >
             Email

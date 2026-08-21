@@ -239,3 +239,8 @@ body {
   border-radius: 0.75rem;
   border: 1px solid var(--color-surface-variant);
 }
+
+.form-input-glow:focus {
+  box-shadow: 0 0 0 2px rgb(255 87 51 / 0.2);
+  border-color: var(--color-primary-container);
+}
