@@ -32,12 +32,12 @@ export default function Hero() {
           >
             Read the Blog
           </Link>
-          <a
-            href="mailto:prashasthamudannayake98@gmail.com"
+          <Link
+            href="/contact"
             className="inline-flex items-center justify-center bg-surface-container-lowest border border-outline-variant text-on-background font-title-lg text-title-lg px-6 py-3 rounded-xl hover:shadow-lift hover:-translate-y-[2px] transition-all duration-300"
           >
             Contact Me
-          </a>
+          </Link>
         </div>
       </div>
       <div className="md:col-span-5 order-1 md:order-2 flex justify-center md:justify-end">

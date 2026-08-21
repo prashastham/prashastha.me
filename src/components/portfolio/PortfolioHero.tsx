@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function PortfolioHero() {
   return (
     <section className="mb-section-desktop mt-xl">
@@ -10,12 +12,12 @@ export default function PortfolioHero() {
         abstract artificial intelligence and physical industrial design with
         precision and innovation.
       </p>
-      <a
-        href="mailto:prashasthamudannayake98@gmail.com"
+      <Link
+        href="/contact"
         className="inline-block bg-primary-container text-on-primary px-lg py-sm rounded-xl font-title-lg text-title-lg hover:opacity-90 transition-opacity"
       >
         Contact Me
-      </a>
+      </Link>
     </section>
   );
 }

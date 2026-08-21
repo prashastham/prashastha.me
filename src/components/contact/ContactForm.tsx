@@ -10,14 +10,13 @@ const inputClassName =
 
 export default function ContactForm() {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const subject = `Message from ${name || "your website"}`;
-    const body = `${message}\n\n— ${name}${email ? ` (${email})` : ""}`;
+    const body = `${message}\n\n— ${name}`;
     const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
     window.location.href = mailtoUrl;
@@ -46,19 +45,19 @@ export default function ContactForm() {
         </div>
         <div className="flex flex-col gap-sm">
           <label
-            htmlFor="email"
+            htmlFor="subject"
             className="font-label-caps text-label-caps text-secondary uppercase tracking-wider"
           >
-            Email
+            Subject
           </label>
           <input
-            id="email"
-            name="email"
-            type="email"
-            placeholder="jane@example.com"
+            id="subject"
+            name="subject"
+            type="text"
+            placeholder="Let's work together"
             required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={subject}
+            onChange={(e) => setSubject(e.target.value)}
             className={inputClassName}
           />
         </div>
