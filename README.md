@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Prashastha Mudannayake — Blog
 
-## Getting Started
+A personal blog built with Next.js (App Router, TypeScript), Tailwind CSS v4, and [MicroCMS](https://microcms.io) as a headless CMS. The visual design is converted 1:1 from the **Kinetic Precision** design system and the Blog / Blog Post mockups in the [Prashastha Mudannayake Portfolio](https://microcms.io) Stitch project — see [`design.md`](./design.md) for the full spec (colors, type scale, spacing, shape language) this app implements verbatim in `src/app/globals.css`.
 
-First, run the development server:
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
+cp .env.local.example .env.local
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Fill in `.env.local`:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+MICROCMS_SERVICE_DOMAIN=your-service-domain   # just the subdomain, e.g. "abc123", not the full URL
+MICROCMS_API_KEY=your-api-key
+NEXT_PUBLIC_SITE_URL=http://localhost:3000    # used for RSS links and the post share URL
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Then run the dev server:
 
-## Learn More
+```bash
+pnpm dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Open [http://localhost:3000](http://localhost:3000).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## MicroCMS content model
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This app reads from a **list** API endpoint named `blog` with the following fields (verified against the live service):
 
-## Deploy on Vercel
+| Field ID    | Type                     | Notes                                    |
+| ----------- | ------------------------ | ----------------------------------------- |
+| `title`     | Text field               | Post title                                |
+| `thumbnail` | Image field               | Cover image, used on the list and post view |
+| `description` | Text area              | Short summary shown on post cards and in `<meta description>` |
+| `content`   | Rich editor               | Full post body, rendered as HTML          |
+| `tags`      | Content reference (multiple), to a `tags` endpoint with a `name` field | Shown as the category badge (first tag) and as pills at the bottom of the post |
+| `writer`    | Content reference (single), to a `writers` endpoint with `name`, `profile`, `image` | Shown as the byline on the post page |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+`id`, `createdAt`, `updatedAt`, and `publishedAt` are provided automatically by MicroCMS.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+There is no separate `category` field — the mockups' category badge is filled from the post's first tag.
+
+## Project structure
+
+```
+src/
+  app/
+    page.tsx                Blog list (paginated, 6 posts/page, ?page=N)
+    blog/[id]/page.tsx        Blog post view + related posts
+    blog/[id]/not-found.tsx
+    feed.xml/route.ts         RSS 2.0 feed
+    error.tsx                 Error boundary (e.g. MicroCMS misconfigured)
+    layout.tsx
+    globals.css                Design tokens (colors, type scale, spacing) from design.md
+  components/
+    layout/                    Header, Footer
+    blog/                      PostCard, RelatedCard, Chip, TagPill, Pagination, ShareButton
+    icons/                     Icon (Material Symbols Outlined wrapper)
+  lib/
+    microcms.ts                MicroCMS client + list/detail/pagination/related-posts queries
+    format.ts                  Date formatting
+    reading-time.ts             Reading-time estimate from post content
+  types/
+    blog.ts                    Blog, Tag, Writer content types
+design.md                      Kinetic Precision design system (source of truth for tokens)
+```
+
+## Deploy
+
+Deploy on [Vercel](https://vercel.com/new) or any Next.js-compatible host. Set `MICROCMS_SERVICE_DOMAIN`, `MICROCMS_API_KEY`, and `NEXT_PUBLIC_SITE_URL` (your production origin) as environment variables on the host.

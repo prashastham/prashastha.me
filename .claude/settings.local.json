@@ -2,7 +2,11 @@
   "permissions": {
     "allow": [
       "mcp__stitch__list_projects",
-      "Bash(pnpm -v)"
+      "Bash(pnpm -v)",
+      "mcp__stitch__list_screens",
+      "mcp__stitch__get_screen",
+      "Bash(mkdir -p /private/tmp/claude-501/-Users-prashasthamudannayake-Desktop-prashastha/d043f848-f6af-4500-9912-22c75cd3bf72/scratchpad/stitch)",
+      "mcp__stitch__list_design_systems"
     ]
   }
 }

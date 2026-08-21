@@ -1,26 +1,237 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/* Design tokens transcribed verbatim from design.md ("Kinetic Precision") */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Colors */
+  --color-surface: #f9f9fb;
+  --color-surface-dim: #d9dadc;
+  --color-surface-bright: #f9f9fb;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f3f3f5;
+  --color-surface-container: #eeeef0;
+  --color-surface-container-high: #e8e8ea;
+  --color-surface-container-highest: #e2e2e4;
+  --color-on-surface: #1a1c1d;
+  --color-on-surface-variant: #5b403a;
+  --color-inverse-surface: #2f3132;
+  --color-inverse-on-surface: #f0f0f2;
+  --color-outline: #8f7069;
+  --color-outline-variant: #e4beb6;
+  --color-surface-tint: #b72301;
+  --color-primary: #b72301;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #ff5733;
+  --color-on-primary-container: #580c00;
+  --color-inverse-primary: #ffb4a4;
+  --color-secondary: #5f5e60;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #e2dfe1;
+  --color-on-secondary-container: #636264;
+  --color-tertiary: #b12d00;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #ff5827;
+  --color-on-tertiary-container: #551100;
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+  --color-primary-fixed: #ffdad3;
+  --color-primary-fixed-dim: #ffb4a4;
+  --color-on-primary-fixed: #3d0600;
+  --color-on-primary-fixed-variant: #8c1800;
+  --color-secondary-fixed: #e4e2e4;
+  --color-secondary-fixed-dim: #c8c6c8;
+  --color-on-secondary-fixed: #1b1b1d;
+  --color-on-secondary-fixed-variant: #474649;
+  --color-tertiary-fixed: #ffdbd1;
+  --color-tertiary-fixed-dim: #ffb5a0;
+  --color-on-tertiary-fixed: #3b0900;
+  --color-on-tertiary-fixed-variant: #872000;
+  --color-background: #f9f9fb;
+  --color-on-background: #1a1c1d;
+  --color-surface-variant: #e2e2e4;
+
+  /* Spacing scale */
+  --spacing-unit: 4px;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-gutter: 24px;
+  --spacing-margin-mobile: 20px;
+  --spacing-margin-desktop: 48px;
+  --spacing-section-mobile: 48px;
+  --spacing-section-desktop: 96px;
+
+  /* Font families (paired with the type-scale names below, exactly as in the mockups) */
+  --font-display-lg: var(--font-inter);
+  --font-display-lg-mobile: var(--font-inter);
+  --font-headline-lg: var(--font-inter);
+  --font-headline-md: var(--font-inter);
+  --font-title-lg: var(--font-inter);
+  --font-body-lg: var(--font-inter);
+  --font-body-base: var(--font-inter);
+  --font-label-caps: var(--font-jetbrains-mono);
+  --font-code-mono: var(--font-jetbrains-mono);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+
+  /* Type scale: size + line-height + letter-spacing + weight, exactly as in design.md */
+  --text-display-lg: 56px;
+  --text-display-lg--line-height: 64px;
+  --text-display-lg--letter-spacing: -0.025em;
+  --text-display-lg--font-weight: 700;
+
+  --text-display-lg-mobile: 40px;
+  --text-display-lg-mobile--line-height: 48px;
+  --text-display-lg-mobile--letter-spacing: -0.02em;
+  --text-display-lg-mobile--font-weight: 700;
+
+  --text-headline-lg: 32px;
+  --text-headline-lg--line-height: 40px;
+  --text-headline-lg--letter-spacing: -0.015em;
+  --text-headline-lg--font-weight: 600;
+
+  --text-headline-md: 24px;
+  --text-headline-md--line-height: 32px;
+  --text-headline-md--letter-spacing: -0.01em;
+  --text-headline-md--font-weight: 600;
+
+  --text-title-lg: 20px;
+  --text-title-lg--line-height: 28px;
+  --text-title-lg--letter-spacing: -0.008em;
+  --text-title-lg--font-weight: 600;
+
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 28px;
+  --text-body-lg--letter-spacing: -0.003em;
+  --text-body-lg--font-weight: 400;
+
+  --text-body-base: 16px;
+  --text-body-base--line-height: 24px;
+  --text-body-base--letter-spacing: 0em;
+  --text-body-base--font-weight: 400;
+
+  --text-label-caps: 12px;
+  --text-label-caps--line-height: 16px;
+  --text-label-caps--letter-spacing: 0.06em;
+  --text-label-caps--font-weight: 600;
+
+  --text-code-mono: 13px;
+  --text-code-mono--line-height: 18px;
+  --text-code-mono--letter-spacing: -0.01em;
+  --text-code-mono--font-weight: 400;
+
+  /* Elevation */
+  --shadow-lift: 0 12px 32px rgb(0 0 0 / 0.08);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* Tailwind's default rounded/rounded-lg/rounded-xl/rounded-full already equal
+   design.md's rounded scale (4px / 8px / 12px / pill) — no override needed. */
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-on-surface);
+  font-family: var(--font-sans);
+}
+
+.markdown-content p {
+  margin-bottom: 1.5rem;
+}
+
+.markdown-content h2 {
+  font-family: var(--font-headline-lg);
+  font-size: var(--text-headline-lg);
+  line-height: var(--text-headline-lg--line-height);
+  letter-spacing: var(--text-headline-lg--letter-spacing);
+  font-weight: var(--text-headline-lg--font-weight);
+  color: var(--color-on-surface);
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.markdown-content h3 {
+  font-family: var(--font-headline-md);
+  font-size: var(--text-headline-md);
+  line-height: var(--text-headline-md--line-height);
+  letter-spacing: var(--text-headline-md--letter-spacing);
+  font-weight: var(--text-headline-md--font-weight);
+  color: var(--color-on-surface);
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+  font-family: var(--font-title-lg);
+  font-size: var(--text-title-lg);
+  line-height: var(--text-title-lg--line-height);
+  letter-spacing: var(--text-title-lg--letter-spacing);
+  font-weight: var(--text-title-lg--font-weight);
+  color: var(--color-on-surface);
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.markdown-content strong {
+  font-weight: 600;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5em;
+}
+
+.markdown-content ul {
+  list-style: disc;
+}
+
+.markdown-content ol {
+  list-style: decimal;
+}
+
+.markdown-content a {
+  color: var(--color-primary-container);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.markdown-content code {
+  background-color: var(--color-surface-container-low);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  color: var(--color-primary-container);
+}
+
+.markdown-content pre {
+  background-color: var(--color-on-surface);
+  color: var(--color-surface-container-low);
+  border-radius: 0.75rem;
+  padding: 1.25em;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+
+.markdown-content pre code {
+  background: none;
+  color: inherit;
+  padding: 0;
+}
+
+.markdown-content blockquote {
+  border-left: 4px solid var(--color-primary-container);
+  padding-left: 1rem;
+  color: var(--color-on-surface-variant);
+  font-style: italic;
+  margin: 2rem 0;
+}
+
+.markdown-content img {
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-surface-variant);
 }
