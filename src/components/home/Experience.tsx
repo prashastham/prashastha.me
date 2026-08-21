@@ -12,10 +12,19 @@ type ExperienceEntry = {
 const EXPERIENCE: ExperienceEntry[] = [
   {
     role: "Founder & AI Researcher",
-    organization: "highbrow.ai & LoopDelta",
+    organization: "HighBrow.ai & LoopDelta",
     period: "2022 - Present",
     description:
       "Spearheading research and development in cognitive interfaces and AI-driven analytics. Architecting core systems for real-time data processing and deploying machine learning models in constrained environments.",
+    icon: "business",
+    dotClassName: "bg-primary-container",
+  },
+  {
+    role: "Associate Lecturer",
+    organization: "Informatics Institute of Technology",
+    period: "2023",
+    description:
+      "Teaching fresh undergraduates fundamental concepts of computer science such as Data Structures and Algorithms and advanced topics such as Machine Learning and Embedded Computing",
     icon: "business",
     dotClassName: "bg-primary-container",
   },

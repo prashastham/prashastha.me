@@ -17,8 +17,8 @@ export default function Hero() {
           </span>
         </div>
         <h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-background max-w-2xl">
-          Computer Science Graduate, <br />
-          <span className="text-secondary">Neuro-Engineer &amp; Founder.</span>
+          ex-Fintech SE, <br />
+          <span className="text-secondary">Neurotechnology Enthusiast &amp; Founder.</span>
         </h1>
         <p className="font-body-lg text-body-lg text-on-surface-variant max-w-[36rem]">
           University of Colombo School of Computing. Bridging the gap between
