@@ -68,3 +68,25 @@ export const ORGANIZATIONS: Organization[] = [
   { name: "LoopDelta", href: "https://github.com/LoopDelta" },
   { name: "PraKesEy", href: "https://github.com/PraKesEy" },
 ];
+
+export type Education = {
+  institution: string;
+  location: string;
+  degree: string;
+  status: string;
+};
+
+export const EDUCATION: Education[] = [
+  {
+    institution: "Bar Ilan University",
+    location: "Ramat Gan, Israel",
+    degree: "MSc. in Neuroscience (Data Science Track)",
+    status: "Coursework Completed",
+  },
+  {
+    institution: "University of Colombo School of Computing",
+    location: "Colombo, Sri Lanka",
+    degree: "BSc. (Hons) in Computer Science",
+    status: "Graduated",
+  },
+];
