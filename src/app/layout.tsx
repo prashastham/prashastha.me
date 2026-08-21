@@ -21,6 +21,9 @@ export const metadata: Metadata = {
   },
   description:
     "Computer Science graduate, neuro-engineer, and founder. Notes on AI, engineering, and everything in between.",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
