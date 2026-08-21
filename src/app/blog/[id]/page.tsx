@@ -28,7 +28,7 @@ export async function generateMetadata({
   if (!post) return {};
 
   return {
-    title: `${post.title} | Prashastha Mudannayake`,
+    title: post.title,
     description: post.description,
   };
 }
@@ -51,7 +51,7 @@ export default async function BlogPostPage({
     <div className="flex-grow pt-[120px] pb-section-desktop px-margin-mobile md:px-margin-desktop w-full max-w-[1200px] mx-auto">
       <article className="max-w-[800px] mx-auto mb-section-desktop">
         <Link
-          href="/"
+          href="/blog"
           className="group flex items-center gap-xs mb-md font-label-caps text-secondary hover:text-primary transition-colors w-fit text-body-base"
         >
           <Icon

@@ -15,8 +15,12 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Prashastha Mudannayake — Blog",
-  description: "Notes on AI, engineering, and everything in between.",
+  title: {
+    default: "Prashastha Mudannayake",
+    template: "%s | Prashastha Mudannayake",
+  },
+  description:
+    "Computer Science graduate, neuro-engineer, and founder. Notes on AI, engineering, and everything in between.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

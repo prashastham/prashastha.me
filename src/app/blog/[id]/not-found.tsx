@@ -11,7 +11,7 @@ export default function NotFound() {
         This post may have been moved or unpublished.
       </p>
       <Link
-        href="/"
+        href="/blog"
         className="group flex items-center gap-xs font-label-caps text-secondary hover:text-primary transition-colors"
       >
         <Icon

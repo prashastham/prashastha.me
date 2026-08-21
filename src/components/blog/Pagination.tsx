@@ -9,8 +9,8 @@ type PaginationProps = {
 export default function Pagination({ page, totalPages }: PaginationProps) {
   if (totalPages <= 1) return null;
 
-  const prevHref = page > 1 ? `/?page=${page - 1}` : undefined;
-  const nextHref = page < totalPages ? `/?page=${page + 1}` : undefined;
+  const prevHref = page > 1 ? `/blog?page=${page - 1}` : undefined;
+  const nextHref = page < totalPages ? `/blog?page=${page + 1}` : undefined;
 
   return (
     <div className="mt-xl flex justify-center items-center gap-md">

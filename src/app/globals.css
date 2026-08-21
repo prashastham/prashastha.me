@@ -51,7 +51,11 @@
   --color-on-background: #1a1c1d;
   --color-surface-variant: #e2e2e4;
 
-  /* Spacing scale */
+  /* Spacing scale. NOTE: Tailwind v4's width, height, max-width, min-width,
+     min-height, max-height, and size utilities also resolve named keys against
+     this same spacing namespace, so md/lg/xl here shadow Tailwind's standard
+     max-w-md (28rem), max-w-lg (32rem), max-w-xl (36rem), etc. Use an arbitrary
+     value (e.g. max-w-[36rem]) instead of a bare max-w-md, max-w-lg, or max-w-xl. */
   --spacing-unit: 4px;
   --spacing-xs: 4px;
   --spacing-sm: 8px;
