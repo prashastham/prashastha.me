@@ -7,6 +7,7 @@ import Icon from "@/components/icons/Icon";
 const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/blog", label: "Blog" },
+  { href: "/portfolio", label: "Portfolio" },
 ];
 
 export default function Header() {
