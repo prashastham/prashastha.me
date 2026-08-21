@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Icon from "@/components/icons/Icon";
@@ -13,6 +14,10 @@ const NAV_LINKS = [
 
 export default function Header() {
   const pathname = usePathname();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const isLinkActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
     <header className="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/30 transition-all duration-300 ease-in-out">
@@ -23,25 +28,21 @@ export default function Header() {
         >
           Prashastha Mudannayake
         </Link>
-        <nav className="hidden md:flex gap-gutter items-center font-body-base text-body-base">
-          {NAV_LINKS.map(({ href, label }) => {
-            const isActive =
-              href === "/" ? pathname === "/" : pathname.startsWith(href);
 
-            return (
-              <Link
-                key={href}
-                href={href}
-                className={
-                  isActive
-                    ? "text-primary relative after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-1 after:h-1 after:bg-primary after:rounded-full hover:opacity-80 transition-opacity"
-                    : "text-on-surface hover:text-primary transition-colors hover:opacity-80"
-                }
-              >
-                {label}
-              </Link>
-            );
-          })}
+        <nav className="hidden md:flex gap-gutter items-center font-body-base text-body-base">
+          {NAV_LINKS.map(({ href, label }) => (
+            <Link
+              key={href}
+              href={href}
+              className={
+                isLinkActive(href)
+                  ? "text-primary relative after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-1 after:h-1 after:bg-primary after:rounded-full hover:opacity-80 transition-opacity"
+                  : "text-on-surface hover:text-primary transition-colors hover:opacity-80"
+              }
+            >
+              {label}
+            </Link>
+          ))}
           <Link
             href="/feed.xml"
             className="text-on-surface hover:text-primary transition-colors ml-sm hover:opacity-80 flex items-center"
@@ -50,7 +51,44 @@ export default function Header() {
             <Icon name="rss_feed" />
           </Link>
         </nav>
+
+        <button
+          type="button"
+          onClick={() => setIsMenuOpen((open) => !open)}
+          className="md:hidden flex items-center justify-center text-on-surface hover:text-primary transition-colors"
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isMenuOpen}
+        >
+          <Icon name={isMenuOpen ? "close" : "menu"} />
+        </button>
       </div>
+
+      {isMenuOpen && (
+        <nav className="md:hidden flex flex-col border-t border-outline-variant/30 bg-surface/95 backdrop-blur-xl px-margin-mobile py-md gap-xs font-body-base text-body-base">
+          {NAV_LINKS.map(({ href, label }) => (
+            <Link
+              key={href}
+              href={href}
+              onClick={() => setIsMenuOpen(false)}
+              className={`px-md py-sm rounded-lg transition-colors ${
+                isLinkActive(href)
+                  ? "text-primary bg-primary-container/10"
+                  : "text-on-surface hover:text-primary hover:bg-surface-container-low"
+              }`}
+            >
+              {label}
+            </Link>
+          ))}
+          <Link
+            href="/feed.xml"
+            onClick={() => setIsMenuOpen(false)}
+            className="px-md py-sm rounded-lg text-on-surface hover:text-primary hover:bg-surface-container-low transition-colors flex items-center gap-sm"
+          >
+            <Icon name="rss_feed" className="text-[20px]" />
+            RSS Feed
+          </Link>
+        </nav>
+      )}
     </header>
   );
 }
