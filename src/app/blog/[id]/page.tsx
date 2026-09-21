@@ -72,7 +72,7 @@ export default async function BlogPostPage({
           {!post.isPDFContent && (
             <>
               <span className="w-1 h-1 bg-surface-variant rounded-full" />
-              <span>{getReadingTime(post.content)}</span>
+              <span>{getReadingTime(post.content ?? "")}</span>
             </>
           )}
         </div>
@@ -85,16 +85,18 @@ export default async function BlogPostPage({
           </div>
         )}
 
-        <div className="w-full h-[400px] bg-surface-container-high rounded-xl mb-xl border border-surface-variant overflow-hidden relative">
-          <Image
-            src={post.thumbnail.url}
-            alt={post.title}
-            fill
-            sizes="(min-width: 768px) 800px, 100vw"
-            className="object-cover"
-            priority
-          />
-        </div>
+        {post.thumbnail && (
+          <div className="w-full h-[400px] bg-surface-container-high rounded-xl mb-xl border border-surface-variant overflow-hidden relative">
+            <Image
+              src={post.thumbnail.url}
+              alt={post.title}
+              fill
+              sizes="(min-width: 768px) 800px, 100vw"
+              className="object-cover"
+              priority
+            />
+          </div>
+        )}
 
         {post.content && (
           <div

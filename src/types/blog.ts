@@ -12,9 +12,9 @@ export type Writer = {
 
 export type Blog = {
   title: string;
-  thumbnail: MicroCMSImage;
-  description: string;
-  content: string;
+  thumbnail?: MicroCMSImage;
+  description?: string;
+  content?: string;
   isPDFContent: boolean;
   fileURL?: string;
   tags?: Tag[];

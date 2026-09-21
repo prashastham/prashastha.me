@@ -26,7 +26,7 @@ export async function GET() {
       <link>${url}</link>
       <guid>${url}</guid>
       <pubDate>${date}</pubDate>
-      <description>${escapeXml(post.description)}</description>
+      <description>${escapeXml(post.description ?? "")}</description>
     </item>`;
     })
     .join("");
