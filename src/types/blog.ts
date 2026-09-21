@@ -15,6 +15,8 @@ export type Blog = {
   thumbnail: MicroCMSImage;
   description: string;
   content: string;
+  isPDFContent: boolean;
+  fileURL?: string;
   tags?: Tag[];
   writer?: Writer;
 } & MicroCMSListContent;

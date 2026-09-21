@@ -69,8 +69,12 @@ export default async function BlogPostPage({
           {post.writer && <span>{post.writer.name}</span>}
           {post.writer && <span className="w-1 h-1 bg-surface-variant rounded-full" />}
           <span>{formatDate(post.publishedAt ?? post.createdAt, "compact")}</span>
-          <span className="w-1 h-1 bg-surface-variant rounded-full" />
-          <span>{getReadingTime(post.content)}</span>
+          {!post.isPDFContent && (
+            <>
+              <span className="w-1 h-1 bg-surface-variant rounded-full" />
+              <span>{getReadingTime(post.content)}</span>
+            </>
+          )}
         </div>
 
         {primaryTag && (
@@ -92,10 +96,34 @@ export default async function BlogPostPage({
           />
         </div>
 
-        <div
-          className="markdown-content font-body-lg text-body-lg text-on-surface leading-relaxed max-w-none"
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
+        {post.content && (
+          <div
+            className="markdown-content font-body-lg text-body-lg text-on-surface leading-relaxed max-w-none"
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          />
+        )}
+
+        {post.isPDFContent && post.fileURL && (
+          <div className="mt-xl">
+            <div className="w-full h-[85vh] rounded-xl border border-surface-variant overflow-hidden bg-surface-container-high">
+              <iframe
+                src={post.fileURL}
+                title={`${post.title} — PDF`}
+                className="w-full h-full"
+              />
+            </div>
+            <div className="mt-sm text-right">
+              <a
+                href={post.fileURL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-label-caps text-label-caps text-secondary hover:text-primary transition-colors"
+              >
+                Open PDF in a new tab
+              </a>
+            </div>
+          </div>
+        )}
 
         {post.tags && post.tags.length > 0 && (
           <div className="mt-xl pt-lg border-t border-surface-variant flex items-center justify-between flex-wrap gap-md">
